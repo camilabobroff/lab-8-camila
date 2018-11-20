@@ -9,3 +9,31 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(tidyverse)
+
+salmon <- read_csv("salmon_imports_new.csv")
+```
+
+Exploratory scatterplot
+If we are going to use linear regression, we should have reason to think that a linear relationship exists between variables.
+
+```{r}
+salmon_scatter <- ggplot(salmon, aes(x = year, y = salmon_fresh))+
+  geom_point()
+
+salmon_scatter
+#Overall, it looks like the relationship between year and fresh salmon imports is linear. However, the two dips in the scatterplot (around 2004 and 2014) cause some concern. It looks like it might make sense to use a linear regression in this case.
+```
+
+Linear regression in R
+```{r}
+salmon_model <- lm(salmon_fresh ~ year, data = salmon)
+
+salmon_model
+# Model equation : y = β0 + β1x + ε
+# Imports(1000 lbs) = -14,982,940 + 7550(year)
+```
+The slope means that with every year, salmon imports are increasing by 7550 (1000 lbs).
+
+The y-intercept means that at year 0, there were -14,982,940 (1000 lbs) of salmon being imported into the US.. this is non-sensical! 
