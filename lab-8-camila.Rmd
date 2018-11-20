@@ -40,6 +40,7 @@ The y-intercept means that at year 0, there were -14,982,940 (1000 lbs) of salmo
 
 **Model diagnostics**
 Use plot(model_name) to view model diagnostics in the ‘Plots’ tab (press Enter in the Console to contine to subsequent diagnostic plots). Explore the diagnostic plots to answer the following:
+
 - Do residuals appear normally distributed?
 - Any concerns about heteroscedasticity or outliers?
 ```{r}
@@ -99,3 +100,12 @@ predictions
 
 ```
 
+**Find Pearson's r (correlation)**
+Use the cor.test() function to find Pearson’s r for the linear relationship described between year and salmon imports.
+```{r}
+salmon_cor <- cor.test(salmon$year, salmon$salmon_fresh)
+salmon_cor
+#Correlation = 0.97, this is a strong positive correlation between year and salmon imports in the US
+```
+**Write a concluding statement about the relationship**
+Year significantly predicts salmon imports in the US (b = 7550, t(26) = 21.72, p < 0.001) with a strong positive correlation between the two (Pearson's r = 0.97). The overall model (Imports(1000 lbs) = 7550(year) - 14,982,940) explains a significant amount of variance in salmon imports (F(1,26) = 471.9, p < 0.001, R2 = 0.95).
