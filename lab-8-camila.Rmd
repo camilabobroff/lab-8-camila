@@ -64,3 +64,17 @@ summary(salmon_model) # see detailed model information, including model fit info
 
 ```
 
+**Prepare a final graph**
+Create a final graph of the linear regression model with the original data, model and 95% confidence interval for predictions.
+
+```{r}
+salmon_final_graph <- ggplot(salmon, aes(x = year, y = salmon_fresh)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = TRUE, size = 0.5, color = "gray20") + # "Basically the CI ribbon indicates the "range" in which our predictions would be if we were to repeat the experiment (sampling) over and over. One sampling leads to a single straight line of predictions; taking into account variability of the data, the zones indicate a range of possible straight lines, if you will. By default (level at .95), we say "if we were to repeat the sampling over and over, 95% of the regression lines would be inside that grey zone."" Level can be changed by adding level = 0.99, for example, to geom_smooth.
+  theme_bw() +
+  scale_x_continuous(expand = c(0,0), limits = c(1990, 2017)) +
+  labs(x = "Year", y = "U.S. Annual Fresh Salmon Imports\n(1,000 pounds)")
+
+salmon_final_graph
+```
+
