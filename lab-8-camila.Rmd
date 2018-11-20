@@ -49,3 +49,18 @@ plot(salmon_model)
 # The residuals appear to be normally distributed, given the qq plot. There does not seem to be an issue with heteroscedasticity, but there are a few outliers (labeled in the plots below, specifically observation 25) that might be of concern. 
 ```
 
+**Explore model fit and significance**
+```{r}
+summary(salmon_model) # see detailed model information, including model fit information (R2 and coefficient standard errors) and statistics
+
+# Does year significantly predict salmon imports?
+# Year does significantly predict salmon imports (p <.001)
+
+# What does the R2 value actually mean in words?
+# According to our model, there is a 0.94 (R-square) proportion of variance in salmon imports that can be explained by year.
+
+# What proportion of the variance in salmon imports is NOT explained by year?
+# 1 - 0.94 = .06 of the variance in salmon imports is NOT explained by year
+
+```
+
